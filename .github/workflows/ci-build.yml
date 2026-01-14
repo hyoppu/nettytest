@@ -40,11 +40,11 @@ jobs:
 
     name: ${{ matrix.setup }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # Cache .m2/repository
       - name: Cache local Maven repository
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ matrix.setup }}-${{ hashFiles('**/pom.xml') }}
@@ -73,7 +73,7 @@ jobs:
       - name: Checking bom dependency versions
         run: ./.github/scripts/check_bom_dependencies.sh
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         if: ${{ failure() }}
         with:
           name: target
