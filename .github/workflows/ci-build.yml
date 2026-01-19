@@ -62,10 +62,10 @@ jobs:
             build-docker-cache-
 
       - name: Build docker image
-        run: docker-compose ${{ matrix.docker-compose-build }}
+        run: docker compose ${{ matrix.docker-compose-build }}
 
       - name: Build project without leak detection
-        run: docker-compose ${{ matrix.docker-compose-run }} | tee build.output
+        run: docker compose ${{ matrix.docker-compose-run }} | tee build.output
 
       - name: Checking for test failures
         run: ./.github/scripts/check_build_result.sh build.output
