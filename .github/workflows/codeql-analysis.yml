@@ -37,6 +37,12 @@ jobs:
     name: Analyze
     runs-on: ubuntu-latest
 
+    # [수정 5] 보안 탭에 결과를 쓰기 위한 권한 추가 (필수!)
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
     strategy:
       fail-fast: false
       matrix:
@@ -95,5 +101,4 @@ jobs:
         ./mvnw -B -ntp clean package -DskipTests=true
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-                                    # [수정 3] v1 -> v3
+      uses: github/codeql-action/analyze@v3 # [수정 3] v1 -> v3
